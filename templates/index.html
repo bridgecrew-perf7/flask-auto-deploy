@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Uploading new Paligo content</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+    .frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        border-radius: 2px;
+        box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        background: linear-gradient(to top right, darkmagenta 0%, hotpink 100%);
+        color: #333;
+        font-family: "Open Sans", Helvetica, sans-serif;
+    }
+    
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        border-radius: 3px;
+        box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+    
+    .title {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #999;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 16px;
+        font-weight: 300;
+        color: #666;
+    }
+    
+    .dropzone {
+        width: 100px;
+        height: 80px;
+        text-align: center;
+    }
+    
+    .upload-icon {
+        margin: 25px 2px 2px 2px;
+    }
+    
+    .upload-input {
+        position: relative;
+        top: -62px;
+        left: -62px;
+    }
+    
+    .btn {
+        display: block;
+        width: 140px;
+        height: 40px;
+        background: darkmagenta;
+        color: #fff;
+        border-radius: 3px;
+        border: 0;
+        box-shadow: 0 3px 0 0 hotpink;
+        transition: all 0.3s ease-in-out;
+        font-size: 14px;
+        cursor:pointer;
+        margin-bottom: 30px;
+    }
+    
+    .btn:hover {
+        background: rebeccapurple;
+        box-shadow: 0 3px 0 0 deeppink;
+    }
+
+    form{
+        height: 380px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1{
+        font-size: 20px;
+    }
+
+    .archive{
+        padding:20px
+    }
+
+    .archive a{
+        color: #fff;
+    }
+  </style>
+  </head>
+
+  <body>
+    <div class="frame">
+        <div class="center">
+            <div class="title">
+                <h1>Avant de uploader le fichier zip assurer vous que :</h1>
+                <ul>
+                    <li>Le <strong>Contenu</strong> de l 'application est comprésser en .zip</li>
+                </ul>
+            </div>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="dropzone">
+                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                    <input type="file" name="file" class="upload-input" required />
+                </div>
+    
+                <button type="submit" class="btn" name="uploadbutton">Envoyer</button>
+
+                {% for message in get_flashed_messages() %}
+                 <div class="flash"><strong>{{ message }}</strong></div>
+                {% endfor %}
+            </form>
+        </div>
+        <div class="archive">
+            <a href="/archives">Regarder les archives</a>
+        </div>
+    </div>
+    <script>
+        var inputFile = document.querySelector('.upload-input').reset()
+    </script>
+  </body>
+</html>
